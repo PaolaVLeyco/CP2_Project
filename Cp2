@@ -1,0 +1,29 @@
+students = []
+
+def show_menu():
+    print("\n" + "="*30)
+    print("   STUDENT MANAGEMENT SYSTEM   ")
+    print("="*30)
+    print("1. Add New Student")
+    print("2. View All Students")
+    print("3. Search Student")
+    print("4. Update Student Information")
+    print("5. Delete Student")
+    print("6. Exit")
+    print("-"*30)
+
+def add_student():
+    print("\n--- Add New Student ---")
+    id_num = input("Enter Student ID: ")
+    name = input("Enter Full Name: ")
+    course = input("Enter Course: ")
+    year = input("Enter Year Level: ")
+    
+    student = {
+        "id": id_num,
+        "name": name,
+        "course": course,
+        "year": year
+    }
+    students.append(student)
+    print(f"✅ Student '{name}' added successfully!")
