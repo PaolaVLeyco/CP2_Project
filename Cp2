@@ -11,7 +11,7 @@ def show_menu():
     print("5. Delete Student")
     print("6. Exit")
     print("-"*30)
-
+    
 def add_student():
     print("\n--- Add New Student ---")
     id_num = input("Enter Student ID: ")
@@ -26,4 +26,81 @@ def add_student():
         "year": year
     }
     students.append(student)
-    print(f"✅ Student '{name}' added successfully!")
+    print(f" Student '{name}' added successfully!")
+
+def view_students():
+    if not students:
+         print("\n No students found in the system.")
+         return
+    
+         print("\n--- Student List ---")
+         print(f"{'ID':<10} {'Name':<20} {'Course':<15} {'Year':<5}")
+         print("-" * 50)
+    
+    for s in students:
+         print(f"{s['id']:<10}{s['name']:<20}{s['course']:<15}{s['year']:<5}")
+
+def search_student():
+         search_id = input("\nEnter Student ID to search: ")
+         found = False
+         for s in students:
+          if s["id"] == search_id:
+             print("\n--- Student Found ---")
+             print(f"ID      : {s['id']}")
+             print(f"Name    : {s['name']}")
+             print(f"Course  : {s['course']}")
+             print(f"Year    : {s['year']}")
+             found = True
+             break
+         if not found:
+             print(" Student not found.")
+ 
+def update_student():
+     search_id = input("\nEnter Student ID to update: ")
+     for s in students:
+         if s["id"] == search_id:
+             print("\nEnter new details (press Enter to keep current value):")
+             new_name = input(f"New Name ({s['name']}): ") or s['name']
+             new_course = input(f"New Course ({s['course']}): ") or s['course']
+             new_year = input(f"New Year ({s['year']}): ") or s['year']
+             
+             s['name'] = new_name
+             s['course'] = new_course
+             s['year'] = new_year
+             print("Student information updated!")
+             return
+     print("ERROR - Student not found.")
+ 
+def delete_student():
+     search_id = input("\nEnter Student ID to delete: ")
+     for index, s in enumerate(students):
+         if s["id"] == search_id:
+             confirm = input(f"Are you sure you want to delete '{s['name']}'? (Y/N): ").lower()
+             if confirm == 'y':
+                 students.pop(index)
+                 print("Student deleted successfully!")
+             else:
+                 print("Deletion cancelled.")
+             return
+     print("ERROR - Student not found.")
+ 
+ # Main Program Loop
+while True:
+     show_menu()
+     choice = input("Enter your choice (1-6): ")
+     
+     if choice == "1":
+         add_student()
+     elif choice == "2":
+         view_students()
+     elif choice == "3":
+         search_student()
+     elif choice == "4":
+         update_student()
+     elif choice == "5":
+         delete_student()
+     elif choice == "6":
+         print("\n Thank you for using the system. Goodbye!")
+         break
+     else:
+         print("Invalid choice! Please enter a number between 1 and 6.")
