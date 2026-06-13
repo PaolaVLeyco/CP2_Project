@@ -1,5 +1,67 @@
 
+// Booking System
 
+const bookingForm = document.getElementById("bookingForm");
+const bookingList = document.getElementById("bookingList");
+const message = document.getElementById("message");
+
+loadBookings();
+
+bookingForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+const name = document.getElementById("name").value;
+
+
+  const arrival = document.getElementById("arrival").value;
+  const departure = document.getElementById("departure").value;
+  const guests = document.getElementById("guests").value;
+
+  const booking = {
+    id: Date.now(),
+    name,
+    arrival,
+    departure,
+    guests
+  };
+
+  let bookings =
+    JSON.parse(localStorage.getItem("bookings")) || [];
+
+  bookings.push(booking);
+
+  localStorage.setItem(
+    "bookings",
+    JSON.stringify(bookings)
+  );
+
+  message.innerHTML =
+    "<p style='color:lightgreen'>Booking Saved Successfully!</p>";
+
+  bookingForm.reset();
+
+  loadBookings();
+});
+
+function loadBookings() {
+  const bookings =
+    JSON.parse(localStorage.getItem("bookings")) || [];
+
+  bookingList.innerHTML = "";
+
+  bookings.forEach((booking) => {
+    const li = document.createElement("li");
+
+    li.innerHTML = `
+     Name: ${booking.name}
+      Arrival: ${booking.arrival}
+      | Departure: ${booking.departure}
+      | Guests: ${booking.guests}
+    `;
+
+    bookingList.appendChild(li);
+  });
+}
 
 
 const menuBtn = document.getElementById("menu-btn");
