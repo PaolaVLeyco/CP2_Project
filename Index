@@ -17,27 +17,6 @@
   
   <body>
     
-
-  
-    <div class="appointment-modal" id="appointmentModal">
-      <div class="appointment-box">
-        <button class="close-modal" id="closeModal">&times;</button>
-        <h2><i class="ri-calendar-check-line"></i> Book Appointment</h2>
-        <div class="success-alert" id="successAlert">
-          ✅ Appointment booked successfully! We'll contact you within 24 hours.
-        </div>
-        <form id="appointmentForm">
-          <input type="text" class="login-input" id="appName" placeholder="Full Name *" required>
-          <input type="tel" class="login-input" id="appPhone" placeholder="Phone Number *" required>
-          <input type="date" class="login-input" id="appDate" required>
-          <input type="time" class="login-input" id="appTime" required>
-          <textarea class="login-input" id="appNotes" rows="3" placeholder="Special requests..."></textarea>
-          <button type="submit" class="login-btn appointment-btn">Confirm Appointment</button>
-        </form>
-      </div>
-    </div>
-
-   
     <nav>
       <div class="nav__bar">
         <div class="nav__header">
